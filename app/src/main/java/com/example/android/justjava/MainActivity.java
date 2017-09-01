@@ -12,6 +12,7 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
+    //variable to store ammount of coffee
     private int quantity = 2;
 
 
