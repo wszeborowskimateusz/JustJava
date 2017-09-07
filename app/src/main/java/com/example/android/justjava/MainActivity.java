@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     //variable to store ammount of coffees
     private int quantity = 2;
+    private int pricePerCoffee = 5;
 
 
     @Override
@@ -28,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         displayQuantity(this.quantity);
-        displayPrice(Integer.toString(this.quantity * 5));
+        int price = calculatePrice();
+        displayPrice(Integer.toString(price));
+
     }
 
     /**
@@ -58,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayPrice(String number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        //priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
         String displayText = "Total: "+ NumberFormat.getCurrencyInstance().format(Integer.parseInt(number)).toString()+"\nThank you!";
         priceTextView.setText(displayText);
     }
@@ -71,5 +73,12 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + numberOfCoffees);
     }
 
+    /**
+     * Calculates the price of the order.
+     * @return total price of the order
+    */
+    private int calculatePrice() {
+        return quantity * pricePerCoffee;
+    }
 
 }
