@@ -6,12 +6,15 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
 
+    public static final int MAXIMAL_NUMBER_OF_COFFEES = 100;
+    public static final int MINIMAL_NUMBER_OF_COFFEES = 1;
     //variable to store ammount of coffees
     private int quantity = 2;
     private int pricePerCoffee = 5;
@@ -68,9 +71,12 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void increment(View view) {
-        if (this.quantity == Integer.MAX_VALUE) this.quantity = Integer.MAX_VALUE - 1;
-        displayQuantity(this.quantity + 1);
+        if (this.quantity == MAXIMAL_NUMBER_OF_COFFEES ){
+            Toast.makeText(this,"You cannot order more than 100 cups of coffee",Toast.LENGTH_SHORT).show();
+            return;
+        }
         this.quantity++;
+        displayQuantity(this.quantity);
     }
 
 
@@ -79,9 +85,13 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void decrement(View view) {
-        if (this.quantity == 0) this.quantity = 1;
-        displayQuantity(this.quantity - 1);
+        if (this.quantity == MINIMAL_NUMBER_OF_COFFEES){
+            Toast.makeText(this,"You cannot order less than 1 cup of coffee",Toast.LENGTH_SHORT).show();
+            return;
+        }
         this.quantity--;
+        displayQuantity(this.quantity);
+
     }
 
     /**
