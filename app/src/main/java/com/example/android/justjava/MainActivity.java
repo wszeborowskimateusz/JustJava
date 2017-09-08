@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private int quantity = 2;
     private int pricePerCoffee = 5;
     private boolean hasWhippedCream = false;
-
+    private boolean hasChocolate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +31,26 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(this.quantity);
         int price = calculatePrice();
         hasWhippedCream = checkWhippedCreamCheckBox();
+        hasChocolate = checkChocolateCheckBox();
         String msg = createOrderSummary(price);
         displayMassage(msg);
 
     }
 
     /**
-     * @return the state of the checkobox (checked or unchecked)
+     * @return the state of the whipped cream checkobox (checked or unchecked)
      */
     public boolean checkWhippedCreamCheckBox(){
         CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
         return whippedCream.isChecked();
+    }
+
+    /**
+     * @return the state of the chocolate checkobox (checked or unchecked)
+     */
+    public boolean checkChocolateCheckBox(){
+        CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        return chocolate.isChecked();
     }
 
     /**
@@ -70,7 +79,12 @@ public class MainActivity extends AppCompatActivity {
      * @return summary text massage for an order
      */
     public String createOrderSummary(int price){
-        return "Name: Mateusz Wszeborowski\nAdd whipped cream: "+hasWhippedCream+" \nQuantity: "+quantity+" \nTotal: $"+price+" \nThank you!";
+        return "Name: Mateusz Wszeborowski" +
+                "\nAdd whipped cream: "+hasWhippedCream+" " +
+                "\nAdd chocolate: "+hasChocolate+" " +
+                "\nQuantity: "+quantity+
+                "\nTotal: $"+price+" "
+                + "\nThank you!";
     }
 
     /**
