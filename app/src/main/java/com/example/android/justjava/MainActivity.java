@@ -3,6 +3,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 /**
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     //variable to store ammount of coffees
     private int quantity = 2;
     private int pricePerCoffee = 5;
+    private boolean hasWhippedCream = false;
 
 
     @Override
@@ -28,9 +30,18 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         displayQuantity(this.quantity);
         int price = calculatePrice();
+        hasWhippedCream = checkWhippedCreamCheckBox();
         String msg = createOrderSummary(price);
         displayMassage(msg);
 
+    }
+
+    /**
+     * @return the state of the checkobox (checked or unchecked)
+     */
+    public boolean checkWhippedCreamCheckBox(){
+        CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
+        return whippedCream.isChecked();
     }
 
     /**
@@ -59,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
      * @return summary text massage for an order
      */
     public String createOrderSummary(int price){
-        return "Name: Mateusz Wszeborowski \nQuantity: "+quantity+" \nTotal: $"+price+" \nThank you!";
+        return "Name: Mateusz Wszeborowski\nAdd whipped cream: "+hasWhippedCream+" \nQuantity: "+quantity+" \nTotal: $"+price+" \nThank you!";
     }
 
     /**
