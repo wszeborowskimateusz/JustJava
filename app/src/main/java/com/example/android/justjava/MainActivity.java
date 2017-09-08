@@ -118,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
      * @return total price of the order
     */
     private int calculatePrice() {
-        int price = quantity * pricePerCoffee;
+        int price = pricePerCoffee;
         if(hasWhippedCream)price++;
         if(hasChocolate)price+=2;
-        return price;
+        return price * quantity;
     }
 
 }
