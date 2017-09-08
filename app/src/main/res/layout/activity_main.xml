@@ -20,11 +20,9 @@
             android:hint="@string/name"
             android:inputType="textCapWords"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/HeaderTextStyle"
             android:paddingBottom="16dp"
-            android:text="@string/toppings"
-            android:textAllCaps="true" />
+            android:text="@string/toppings"/>
 
         <CheckBox
             android:id="@+id/whipped_cream"
@@ -42,11 +40,9 @@
             android:textSize="16sp"
             android:paddingLeft="24dp"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/HeaderTextStyle"
             android:paddingBottom="16dp"
-            android:text="@string/quantity"
-            android:textAllCaps="true" />
+            android:text="@string/quantity" />
 
         <LinearLayout
             android:layout_width="match_parent"
