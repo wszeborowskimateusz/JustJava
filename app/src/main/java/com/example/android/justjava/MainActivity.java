@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private int pricePerCoffee = 5;
     private boolean hasWhippedCream = false;
     private boolean hasChocolate = false;
+    private String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice();
         hasWhippedCream = checkWhippedCreamCheckBox();
         hasChocolate = checkChocolateCheckBox();
+        name = readName();
         String msg = createOrderSummary(price);
         displayMassage(msg);
 
@@ -51,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkChocolateCheckBox(){
         CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
         return chocolate.isChecked();
+    }
+    /**
+     * @return the state of the chocolate checkobox (checked or unchecked)
+     */
+    public String readName(){
+        EditText name = (EditText) findViewById(R.id.name_edit_text);
+        return name.getText().toString();
     }
 
     /**
@@ -79,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
      * @return summary text massage for an order
      */
     public String createOrderSummary(int price){
-        return "Name: Mateusz Wszeborowski" +
+        return "Name: "+ name +
                 "\nAdd whipped cream: "+hasWhippedCream+" " +
                 "\nAdd chocolate: "+hasChocolate+" " +
                 "\nQuantity: "+quantity+
