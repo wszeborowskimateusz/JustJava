@@ -1,5 +1,7 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,7 +41,16 @@ public class MainActivity extends AppCompatActivity {
         name = readName();
         int price = calculatePrice();
         String msg = createOrderSummary(price);
-        displayMassage(msg);
+
+        //Using Intent to mail the order
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava ordered for "+name);
+        intent.putExtra(Intent.EXTRA_TEXT, msg);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+        //displayMassage(msg);
 
     }
 
@@ -133,5 +144,6 @@ public class MainActivity extends AppCompatActivity {
         if(hasChocolate)price+=2;
         return price * quantity;
     }
+
 
 }
