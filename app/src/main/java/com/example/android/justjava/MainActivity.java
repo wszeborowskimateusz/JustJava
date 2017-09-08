@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
         displayQuantity(this.quantity);
+
         hasWhippedCream = checkWhippedCreamCheckBox();
         hasChocolate = checkChocolateCheckBox();
         name = readName();
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-        //displayMassage(msg);
 
     }
 
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
         return chocolate.isChecked();
     }
+
     /**
      * @return the state of the chocolate checkobox (checked or unchecked)
      */
@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function increments thw value of coffees
      */
-
     public void increment(View view) {
         if (this.quantity == MAXIMAL_NUMBER_OF_COFFEES ){
             Toast.makeText(this,"You cannot order more than 100 cups of coffee",Toast.LENGTH_SHORT).show();
@@ -90,11 +89,9 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(this.quantity);
     }
 
-
     /**
      * This function decrements thw value of coffees
      */
-
     public void decrement(View view) {
         if (this.quantity == MINIMAL_NUMBER_OF_COFFEES){
             Toast.makeText(this,"You cannot order less than 1 cup of coffee",Toast.LENGTH_SHORT).show();
@@ -116,14 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 "\nQuantity: "+quantity+
                 "\nTotal: $"+price+" "
                 + "\nThank you!";
-    }
-
-    /**
-     * This method displays the given price on the screen.
-     */
-    private void displayMassage(String price) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(price);
     }
 
     /**
