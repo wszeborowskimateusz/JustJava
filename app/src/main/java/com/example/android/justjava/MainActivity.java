@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         displayQuantity(this.quantity);
-        int price = calculatePrice();
         hasWhippedCream = checkWhippedCreamCheckBox();
         hasChocolate = checkChocolateCheckBox();
         name = readName();
+        int price = calculatePrice();
         String msg = createOrderSummary(price);
         displayMassage(msg);
 
@@ -118,7 +118,10 @@ public class MainActivity extends AppCompatActivity {
      * @return total price of the order
     */
     private int calculatePrice() {
-        return quantity * pricePerCoffee;
+        int price = quantity * pricePerCoffee;
+        if(hasWhippedCream)price++;
+        if(hasChocolate)price+=2;
+        return price;
     }
 
 }
